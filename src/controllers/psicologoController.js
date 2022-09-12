@@ -12,13 +12,14 @@ const psicologoController = {
             senha,
             descricao
         });
-        res.json(novoPsicologo);
-        res.status(201).json("Psicologo cadastrado!");
+       
+        res.json('Psicologo cadastrado com sucesso');
+        res.status(201);
     
         } catch(error){
             console.log("Erro ao cadastrar psicólogo")
             console.error(error)
-            return res.status(500).json("Erro ao cadastrar psicólogo")
+            res.status(500).json("Erro ao cadastrar psicólogo")
         }  
     },
     async listarPsicologo(req, res){
