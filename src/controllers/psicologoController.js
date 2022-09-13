@@ -59,13 +59,24 @@ const psicologoController = {
                 senha,
                 descricao},
                 {where:{id_psicologo}});
-            res.json('Produto atualizado')
+            res.json('Cadastro atualizado')
             res.status(201)
             
         } catch (error) {
             console.error(error);
             console.log('Não foi possivel atualizar as informações');
             res.status(500);
+        }
+    },
+    async getPsicologoById(req, res){
+        try {
+            const {id_psicologo} = req.params
+            const response = await psicologo.findByPk({where:{id_psicologo}})
+            res.json(response)
+        } catch (error) {
+            console.error(error);
+            console.log('Não foi possivel listar psicologo');
+            res.status(404)
         }
     }
 }
