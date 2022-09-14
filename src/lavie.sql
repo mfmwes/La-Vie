@@ -18,6 +18,23 @@ CREATE SCHEMA IF NOT EXISTS `lavie` DEFAULT CHARACTER SET utf8mb3 ;
 USE `lavie` ;
 
 -- -----------------------------------------------------
+-- Table `lavie`.`paciente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lavie`.`paciente` (
+  `id_paciente` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `idade` INT NOT NULL,
+  `createdAt` DATE NULL DEFAULT NULL,
+  `updatedAt` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`id_paciente`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
 -- Table `lavie`.`psicologo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lavie`.`psicologo` (
@@ -31,26 +48,7 @@ CREATE TABLE IF NOT EXISTS `lavie`.`psicologo` (
   PRIMARY KEY (`id_psicologo`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 12
-DEFAULT CHARACTER SET = utf8mb3;
-
-
--- -----------------------------------------------------
--- Table `lavie`.`paciente`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lavie`.`paciente` (
-  `id_paciente` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `idade` INT NOT NULL,
-  `psicologo_id_psicologo` INT NOT NULL,
-  PRIMARY KEY (`id_paciente`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
-  INDEX `fk_paciente_psicologo_idx` (`psicologo_id_psicologo` ASC) VISIBLE,
-  CONSTRAINT `fk_paciente_psicologo`
-    FOREIGN KEY (`psicologo_id_psicologo`)
-    REFERENCES `lavie`.`psicologo` (`id_psicologo`))
-ENGINE = InnoDB
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8mb3;
 
 

@@ -1,16 +1,15 @@
-const pacientes = require('../models/pacientes.js');
+const Paciente = require('../models/Paciente.js');
 
 
 const pacientesController = {
-    async cadastrarPacientes(req, res){
+    async cadastrarPaciente(req, res){
         try{
         const { nome, email, idade } = req.body;
         
-        const novoPsicologo = await psicologo.create({
+        const novoPaciente = await Paciente.create({
             nome,
             email,
-            idade
-            
+            idade,                     
         });
         res.json(novoPaciente);
         res.status(201).json("Paciente cadastrado com sucesso!");
@@ -21,10 +20,10 @@ const pacientesController = {
             return res.status(500).json("Erro ao cadastrar paciente")
         }  
     },
-    async listarPacientes(req, res){
+    async listarPaciente(req, res){
         try {
-            const listarPacientes = await pacientes.findAll()
-            res.json(listarPacientes)
+            const listaPacientes = await Paciente.findAll()
+            res.json(listaPacientes)
         } catch (error) {
             res.status(500).json("Erro ao listar pacientes ")
             console.error('Não foi possivel exibir lista')
@@ -32,16 +31,16 @@ const pacientesController = {
         }
     },
     
-    async atualizarPacientes(req, res){
+    async atualizarPaciente(req, res){
         try {
-            const {id_pacientes} = req.params;
+            const {id_paciente} = req.params;
             const {nome,email,idade} = req.body;
 
-            const pacientesAtualizado = await pacientes.update({
+            const pacientesAtualizado = await Pacientes.update({
                 nome,
                 email,
                 idade},
-                {where:{id_pacientes}});
+                {where:{id_paciente}});
             res.json('Paciente atualizado')
             res.status(201)
             
@@ -52,12 +51,12 @@ const pacientesController = {
         }
     },
 
-    async deletarPacientes(req,res){
+    async deletarPaciente(req,res){
         try {
-            const {id_pacientes} = req.params;
+            const {id_paciente} = req.params;
             
-            await pacientes.destroy({
-                where:{id_pacientes},
+            await Paciente.destroy({
+                where:{id_paciente},
             },
             res.status(201),
             res.json('Paciente deletado com sucesso'));
